@@ -1,0 +1,65 @@
+body{
+    font-family: "Raleway" sans-serif;
+}
+
+#local{
+    width: 100%;
+    background-color: #1e90ff;
+    padding: 15px 0;
+    margin: 0;
+    font-family: "Raleway" sans-serif;
+    font-size: 1.3rem;
+    color: white;
+    text-align: center;
+}
+
+#cities{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#citied td{
+    border: 1px solid #dedede;
+    padding: 5px;
+}
+
+#cities tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.col1{
+    width: 10%;
+}
+
+.col2{
+    width: 45%;
+}
+
+@media (max-width: 600px) {
+    #cities {
+        display: block; 
+    }
+
+    #cities tr {
+        display: flex;
+        flex-direction: column; 
+        margin-bottom: 10px;
+        background: white; 
+        border-radius: 5px; 
+        overflow: hidden; 
+    }
+
+    #cities td, #cities th {
+        display: block;
+        width: 100%; 
+        box-sizing: border-box; 
+        text-align: left; 
+    }
+
+    #cities td img {
+        max-width: 50px; 
+        height: auto; 
+        margin-right: 10px; 
+        vertical-align: middle; 
+    }
+}

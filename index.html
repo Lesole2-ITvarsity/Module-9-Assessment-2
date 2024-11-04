@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>World Time</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <p id="local">Loading.......</p>
+    <div id="output"></div>
+
+    <script>
+        var timer = setInterval(displayWorldTime, 1000);
+
+        var cities = [
+            {name: "Istanbul", utcOffset: 3, flag: "Turkey.png"},
+            {name: "New York City", utcOffset: -5, flag: "United-States-of-America.png"},
+            {name: "Tokyo", utcOffset: 9, flag: "Japan.png"},
+            {name: "Moscow", utcOffset: 3, flag: "Russia.png"},
+            {name: "Rio De Janeiro", utcOffset: -3, flag: "Brazil.png"},
+            {name: "Sydney", utcOffset: 11, flag: "Australia.png"},
+            {name: "Vancouver", utcOffset: -8, flag: "Canada.png"},
+            {name: "Beijing", utcOffset: 8, flag: "China.png"},
+            {name: "Uruguay", utcOffset: -3, flag: "Uruguay.png"}, // Corrected flag name
+            {name: "Haiti", utcOffset: -5, flag: "Haiti.png"},
+            {name: "Hungary", utcOffset: +1, flag: "Hungary.png"},
+            {name: "India", utcOffset: +5, flag: "India.png"},
+            {name: "Iraq", utcOffset: +3, flag: "Iraq.png"},
+            {name: "Ireland", utcOffset: +0, flag: "Ireland.png"},
+            {name: "Israel", utcOffset: +2, flag: "Israel.png"},
+            {name: "Jamaica", utcOffset: -5, flag: "Jamaica.png"},
+            {name: "Jordan", utcOffset: +3, flag: "Jordan.png"},
+            {name: "Iceland", utcOffset: +0, flag: "Iceland.png"},
+            {name: "Italy", utcOffset: +1, flag: "Italy.png"},
+            {name: "Kenya", utcOffset: +3, flag: "Kenya.png"},
+            {name: "Luxembourg", utcOffset: +1, flag: "Luxembourg.png"},
+            {name: "Mexico", utcOffset: -8, flag: "Mexico.png"},
+            {name: "Lithuania", utcOffset: +2, flag: "Lithuania.png"},
+            {name: "Malawi", utcOffset: +2, flag: "Malawi.png"},
+            {name: "Maldives", utcOffset: +5, flag: "Maldives.png"},
+            {name: "Cote-d'Ivoire", utcOffset: +0, flag: "Cote-d'Ivoire.png"},
+            {name: "Burundi", utcOffset: +2, flag: "Burundi.png"},
+            {name: "Cameroon", utcOffset: +1, flag: "Cameroon.png"},
+            {name: "Botswana", utcOffset: +2, flag: "Botswana.png"},
+            {name: "Portugal", utcOffset: +0, flag: "Portugal.png"},
+        ];
+
+        cities.sort(compare);
+        console.log(getCurrentTime(cities[0].utcOffset));
+
+        function compare(a, b) {
+            var cityA = a.name.toUpperCase(); 
+            var cityB = b.name.toUpperCase();
+
+            if (cityA > cityB) {
+                return 1;
+            } else if (cityA < cityB) {
+                return -1;
+            }
+            return 0;
+        }
+
+        function getUtcTime() {
+            var td = new Date();
+            var utcOffset = td.getTimezoneOffset() * 60000; // Convert offset to milliseconds
+            var utcTime = new Date(td.getTime() + utcOffset);
+            return utcTime.getTime(); // Call `getTime` with parentheses
+        }
+
+        function getCurrentTime(utcOffset) {
+            var mil = 1000 * 60 * 60; // Milliseconds in an hour
+            var time = new Date(getUtcTime() + utcOffset * mil);
+            return time.toLocaleTimeString();
+        }
+
+        function displayWorldTime() {
+            var dt = new Date();
+            document.getElementById("local").innerHTML = "Local Time: " + dt.toLocaleTimeString();
+
+            var output = `<table id="cities">`;
+            output += `
+                <tr>
+                    <th class="col1"></th>
+                    <th class="col2"></th>
+                    <th></th>
+                </tr>    
+            `;
+
+            for (var a = 0; a < cities.length; a++) {
+                output += `
+                    <tr>
+                        <td><img src="${cities[a].flag}" alt="${cities[a].name} Flag" style="width: 30px; vertical-align: middle;"/></td>
+                        <td>${cities[a].name}</td>
+                        <td>${getCurrentTime(cities[a].utcOffset)}</td> 
+                    </tr>
+                `;
+            }
+            output += `</table>`;
+            document.getElementById("output").innerHTML = output; // Fixed typo here
+        }
+    </script>
+</body>
+</html>
