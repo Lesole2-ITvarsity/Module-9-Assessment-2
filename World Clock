@@ -1,0 +1,3 @@
+The World Time Clock App is a simple, yet extremely useful app that dsiplays the local time in your time zone, as well as the current time in major cities around the world. The app is built to showcase the power of Javascript with date and time amnipulation, Javascript objects and object arrays.
+While the app currently shows the time for a fixed set of cities there are plans to allow users to select which cities they want to display in future versions. This app is a great way to consolidate my knowledge of Javascript and work with time zones, date dormatting and basic UI design.
+Technologies used: (FrontEnd: HTML, CSS, JAVASCRIPT)
